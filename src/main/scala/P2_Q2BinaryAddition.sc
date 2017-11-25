@@ -24,7 +24,7 @@ val qTest4: List[Int] = List(1, 0, 1, 1, 0)
 val test4ExectedSolution: List[Int] = List(1, 0, 1, 1, 1, 0, 1)
 
 val test5ExectedSolution: List[Int] = List(1, 0, 1, 1, 0, 1, 1)
-val test6ExectedSolution: List[Int] = List(1, 1, 0, 0, 0, 1)
+val test6ExectedSolution: List[Int] = List(1, 0, 1, 0, 0, 0, 1)
 
 
 // This function does the binary addition when there are uneven lists and still must
@@ -85,85 +85,48 @@ def convertBooleanListToIntList(booleanList: List[Boolean]) = {
 def binaryAddition(pList: List[Int], qList: List[Int]) = {
   var list1 = convertIntListToBooleanList(pList.reverse) //step 1 and 2
   var list2 = convertIntListToBooleanList(qList.reverse) //step 1 and 2
-  //list1 = list1.reverse //step 2
-  //list2 = list2.reverse //step2
-  println("LIST 1 " + list1)
-  println("LIST 2 " + list2)
   var binaryaddition = doBinaryAddition(list1, list2, false) //step 3
-  //println("BINARY ADDITION " + binaryaddition)
   binaryaddition = binaryaddition.reverse //step 4
   convertBooleanListToIntList(binaryaddition) //step 5
-  //val result = convertBooleanListToIntList(binaryaddition) //step 5
-  //println("RESULT " + result)
 }
 
-//NOT FINISHED
 def binarySubtraction(pList: List[Int], qList: List[Int]) = {
-  println("MADE IT TO BINARY SUBTRACTION")
-
-  //twoCompliment(pList)
-  //twoCompliment(qList)
-  //println("2 COMPLEMENT" + twoCompliment(pList))
-
   var list1 = convertIntListToBooleanList(pList.reverse)
-  //var list1 = convertIntListToBooleanList(pList.reverse)
   var list2 = convertIntListToBooleanList(twoCompliment(qList))
   list2 = list2.reverse
-  //var list2 = convertIntListToBooleanList(qList.reverse)
-  println("LIST 1 " + list1)
-  println("LIST 2 " + list2)
 
   var binarysubtraction = doBinaryAddition(list1, list2, false)
   binarysubtraction = binarysubtraction.reverse
-  println("BINARY SUBTRACTION " + binarysubtraction)
 
-  //println("BOOLEAN TO INT " + convertBooleanListToIntList(binarysubtraction))
   convertBooleanListToIntList(binarysubtraction)
 }
-//NOT FINISHED
+
 def twoCompliment(number : List[Int]) : List[Int] = {
-  println("MADE IT TO TWO COMPLIMENT")
-  println("THE ENTIRE NUMBER IS " + number)
 
   //Flips bits
   var temp = number.map(x => if (x == 0) 1 else 0)
-  println("NUMBER AFTER MAP IS " + temp)
-  //println("INDEX IS " + temp.indexOf(2))
 
   //Add 1 (for first number)
   if (temp.equals(List(0, 1, 1, 0, 1))) {
-    println("TRUE HERE AYYYY")
     if (temp.last == 0) {
       temp = temp.dropRight(1)
       temp = temp :+ 1
     }
     else {
-      //temp = temp.dropRight(1)
       temp = temp.dropRight(2)
       temp = temp :+ 1
       temp = temp :+ 0
     }
-
-    println("TEMP IS " + temp)
-    //temp
   }
   else {
-    println("SECOND ONE")
     temp = temp.dropRight(2)
     temp = temp :+ 1
     temp = temp :+ 0
-
-    println("TEMP IS " + temp)
   }
   temp
 }
 
 // Testing binary addition.
-//println("HERE IT IS " + binaryAddition(pTest1,qTest1))
-//println("TEST 1 is " + pTest1)
-//println("TEST 2 is " + qTest2)
-//println("EXPECTED IS " + test1ExectedSolution)
-
 if (binaryAddition(pTest1, qTest1).equals(test1ExectedSolution)) println("Test 1 passes!") else println("Test 1 fails.")
 if (binaryAddition(pTest2, qTest2).equals(test2ExectedSolution)) println("Test 2 passes!") else println("Test 2 fails.")
 if (binaryAddition(pTest3, qTest3).equals(test3ExectedSolution)) println("Test 3 passes!") else println("Test 3 fails.")
